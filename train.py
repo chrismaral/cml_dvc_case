@@ -4,7 +4,7 @@ import json
 import os
 import numpy as np
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 # Read in data
 X_train = np.genfromtxt("data/train_features.csv")
@@ -15,7 +15,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 # Fit a model
 
-clf = MLPClassifier(random_state=0, max_iter=350)
+clf = MLPClassifier(random_state=42, max_iter=350)
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
@@ -33,4 +33,11 @@ pd.DataFrame(loss, columns=["loss"]).to_csv("loss.csv", index=False)
 with open("metrics.json", 'w') as outfile:
         json.dump({ "accuracy": acc, "precision":prec,"recall":rec}, outfile)
 
-
+# Generar y guardar el gráfico de la curva de pérdida
+plt.figure(figsize=(10, 6))
+plt.plot(loss, label='Loss Curve')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.title('Training Loss Curve')
+plt.legend()
+plt.savefig('loss_curve.png')
