@@ -2,3 +2,4 @@
     remote = myremote
 ['remote "myremote"']
     url = gdrive://1PVD1VcFRkSjMHUySjxSk3x8qR5V7VzZJ
+    gdrive_user_credentials_file = C:/Users/camil/AppData/Local/pydrive2fs/Cache/710796635688-iivsgbgsb6uv1fap6635dhvuei09o66c.apps.googleusercontent.com/default.json
