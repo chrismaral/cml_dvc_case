@@ -18,7 +18,7 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: cml_run
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
         run: |
           # Tu flujo de trabajo de ML va aquí
           pip install -r requirements.txt
