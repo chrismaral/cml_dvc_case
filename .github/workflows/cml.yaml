@@ -1,28 +1,49 @@
+# name: wine-jfc
+# on: [push]
+# jobs:
+#   train-model:
+#     runs-on: [self-hosted]
+#     container: ghcr.io/iterative/cml:0-dvc2-base1
+#     steps:
+#       - uses: actions/checkout@v3
+#       # Aquí se omiten las acciones de configuración de Node y Python, 
+#       # asumiendo que el contenedor ya tiene lo necesario.
+#       # Si no es así, descomenta y ajusta las siguientes líneas:
+#       # - uses: actions/setup-node@v3
+#       #   with:
+#       #     node-version: '16'
+#       # - uses: actions/setup-python@v4
+#       #   with:
+#       #     python-version: '3.x'
+#       - uses: iterative/setup-cml@v1
+#       - name: cml_run
+#         env:
+#           REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
+#         run: |
+#           # flujo de trabajo de ML
+#           pip install -r requirements.txt
+#           python train.py
+          
+#           echo "METRICAS DEL MODELO"
+#           cat metrics.json
+
+#se elimina la línea que especifica el uso del contenedor, para ejecutar en un runner basado en windows
 name: wine-jfc
 on: [push]
 jobs:
   train-model:
     runs-on: [self-hosted]
-    container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
-      # Aquí se omiten las acciones de configuración de Node y Python, 
-      # asumiendo que el contenedor ya tiene lo necesario.
-      # Si no es así, descomenta y ajusta las siguientes líneas:
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '16'
-      # - uses: actions/setup-python@v4
-      #   with:
-      #     python-version: '3.x'
+      # Configura Node y Python si es necesario
       - uses: iterative/setup-cml@v1
       - name: cml_run
         env:
           REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
         run: |
-          # flujo de trabajo de ML
           pip install -r requirements.txt
           python train.py
           
           echo "METRICAS DEL MODELO"
           cat metrics.json
+
