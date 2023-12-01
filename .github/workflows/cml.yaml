@@ -20,7 +20,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
         run: |
-          # Tu flujo de trabajo de ML va aquí
+          # flujo de trabajo de ML
           pip install -r requirements.txt
           python train.py
           
