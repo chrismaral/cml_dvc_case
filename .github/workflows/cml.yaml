@@ -2,7 +2,7 @@ name: wine-jfc
 on: [push]
 jobs:
   train-model:
-    runs-on: [self-hosted, cml-gpu]
+    runs-on: [self-hosted]
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
