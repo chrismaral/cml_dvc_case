@@ -1,13 +1,14 @@
 name: wine-jfc
 on: [push]
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    # optionally use a convenient Ubuntu LTS + DVC + CML image
+  train-model:
+    runs-on: [self-hosted, cml-gpu]
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v3
-      # may need to setup NodeJS & Python3 on e.g. self-hosted
+      # Aquí se omiten las acciones de configuración de Node y Python, 
+      # asumiendo que el contenedor ya tiene lo necesario.
+      # Si no es así, descomenta y ajusta las siguientes líneas:
       # - uses: actions/setup-node@v3
       #   with:
       #     node-version: '16'
@@ -19,7 +20,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Your ML workflow goes here
+          # Tu flujo de trabajo de ML va aquí
           pip install -r requirements.txt
           python train.py
           
