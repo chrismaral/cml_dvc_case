@@ -36,7 +36,6 @@ jobs:
     steps:
       #- uses: actions/checkout@v3
       - uses: actions/checkout@v2
-      # Configura Node y Python si es necesario
       - uses: iterative/setup-cml@v1
       - name: cml_run
         env:
