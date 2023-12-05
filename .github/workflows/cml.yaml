@@ -32,22 +32,20 @@ name: wine-jfc
 on: [push]
 jobs:
   train-model:
-    runs-on: [self-hosted, label-1]
+    runs-on: [self-hosted, cml-gpu]
     steps:
       - uses: actions/checkout@v3
       #- uses: actions/checkout@v2
       #- uses: iterative/setup-cml@v1
       - uses: iterative/setup-cml@v2
-        with:
-          version: 'v0.20.0'
-          vega: false
       - name: cml_run
         env:
-          REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
+           REPO_TOKEN: ${{ secrets.TOKEN_GIT }}
         run: |
-          pip install -r requirements.txt
-          python train.py
+           # flujo de trabajo de ML
+           pip install -r requirements.txt
+           python train.py
           
-          echo "METRICAS DEL MODELO"
-          cat metrics.json
+           echo "METRICAS DEL MODELO"
+           cat metrics.json
 
