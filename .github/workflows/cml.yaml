@@ -32,7 +32,7 @@ name: wine-jfc
 on: [push]
 jobs:
   train-model:
-    runs-on: [self-hosted, label-1]
+    runs-on: [self-hosted, label-2]
     steps:
       #- uses: actions/checkout@v3
       - uses: actions/checkout@v2
